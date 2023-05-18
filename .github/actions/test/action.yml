@@ -15,6 +15,7 @@ runs:
         ls
         npm install
         npm run ${{ inputs.test_set }} ${{ inputs.test_set }}_${{ inputs.environment }}
+        pm2 delete "greetings-app-${{ inputs.environment }}" & EXIT /B 0
       shell: cmd
     - name: Upload report as artifact
       uses: actions/upload-artifact@v3
