@@ -1,10 +1,10 @@
 inputs:
   test_set:
     description: 'Specify test set to run'
-    default: 'BOOKS'
+    default: 'dev'
   environment:
     description: 'Testing environment'
-    default: 'DEV'
+    default: 'dev'
 runs:
   using: "composite"
   steps: 
