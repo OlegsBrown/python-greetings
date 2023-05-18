@@ -19,13 +19,13 @@ pipeline {
                 }
             }
         }
-        // stage('tests-on-dev') {
-        //     steps {
-        //         script{
-        //             test("BOOKS", "dev")
-        //         }
-        //     }
-        // }
+        stage('tests-on-dev') {
+            steps {
+                script{
+                    test("greetings", "dev")
+                }
+            }
+        }
         stage('deploy-to-staging') {
             steps {
                 script {
@@ -33,13 +33,13 @@ pipeline {
                 }
             }
         }
-        // stage('tests-on-staging') {
-        //     steps {
-        //         script{
-        //             test("BOOKS", "staging")
-        //         }
-        //     }
-        // }
+        stage('tests-on-staging') {
+            steps {
+                script{
+                    test("greetings", "staging")
+                }
+            }
+        }
         stage('deploy-to-preprod') {
             steps {
                 script {
@@ -47,13 +47,13 @@ pipeline {
                 }
             }
         }
-        // stage('tests-on-preprod') {
-        //     steps {
-        //         script{
-        //             test("BOOKS", "preprod")
-        //         }
-        //     }
-        // }
+        stage('tests-on-preprod') {
+            steps {
+                script{
+                    test("greetings", "preprod")
+                }
+            }
+        }
         stage('deploy-to-prod') {
             steps {
                 script {
@@ -61,13 +61,13 @@ pipeline {
                 }
             }
         }
-        // stage('tests-on-prod') {
-        //     steps {
-        //         script{
-        //             test("BOOKS", "prod")
-        //         }
-        //     }
-        // }
+        stage('tests-on-prod') {
+            steps {
+                script{
+                    test("greetings", "prod")
+                }
+            }
+        }
     }
 }
 
@@ -89,4 +89,11 @@ def deploy(String environment, int port) {
     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete \"books-${environment}\" & EXIT /B 0"    
     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 start app.py --name \"greetings-app-${environment}\" -- --port=${port}"
 
+}
+
+def test(String test_set, String environment){
+    echo "Testing ${test_set} test set on ${environment} has started.."
+    git branch: 'main', changelog: false, poll: false, url: 'https://github.com/OlegsBrown/course-js-api-framework.git'
+    bat "npm install"
+    bat "npm run ${test_set} ${test_set}_${environment}"
 }
