@@ -1,19 +1,20 @@
 pipeline {
     agent any
-    triggers{ pollSCM('*/1 * * * *') }
-    
+    triggers { 
+        pollSCM('*/1 * * * *') 
+    }
 
     stages {
         stage('install-pip-deps') {
             steps {
-                script{
+                script {
                     build()
                 }
             }
         }
         stage('deploy-to-dev') {
             steps {
-                script{
+                script {
                     deploy("dev", 7001)
                 }
             }
@@ -27,7 +28,7 @@ pipeline {
         // }
         stage('deploy-to-staging') {
             steps {
-                script{
+                script {
                     deploy("staging", 7002)
                 }
             }
@@ -41,7 +42,7 @@ pipeline {
         // }
         stage('deploy-to-preprod') {
             steps {
-                script{
+                script {
                     deploy("preprod", 7003)
                 }
             }
@@ -55,12 +56,12 @@ pipeline {
         // }
         stage('deploy-to-prod') {
             steps {
-                script{
+                script {
                     deploy("prod", 7004)
                 }
             }
         }
-        //         stage('tests-on-prod') {
+        // stage('tests-on-prod') {
         //     steps {
         //         script{
         //             test("BOOKS", "prod")
@@ -70,7 +71,7 @@ pipeline {
     }
 }
 
-def build(){
+def build() {
     echo "Building of node application is starting.."
     git branch: 'main', poll: false, url: 'https://github.com/OlegsBrown/python-greetings.git'
     bat "npm install pm2 -g"
@@ -86,11 +87,3 @@ def deploy(String environment, int port) {
     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete greetings-app-${environment}" || bat 'EXIT /B 0'
     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 start app.py --name greetings-app-${environment} --port ${port}"
 }
-
-
-// def test(String test_set, String environment){
-//     echo "Testing ${test_set} test set on ${environment} has started.."
-//     git branch: 'main', poll: false, url: 'https://github.com/OlegsBrown/python-greetings.git'
-//     bat "npm install"
-//     bat "npm run ${test_set} ${test_set}_${environment}"
-// }
