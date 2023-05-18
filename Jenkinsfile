@@ -68,13 +68,6 @@ pipeline {
                 }
             }
         }
-                stage('stop-all-pm-services') {
-            steps {
-                script {
-                    stop-all-pm()
-                }
-            }
-        }
     }
 }
 
@@ -101,9 +94,4 @@ def test(String test_set, String environment){
     git branch: 'main', changelog: false, poll: false, url: 'https://github.com/OlegsBrown/course-js-api-framework.git'
     bat "npm install -g"
     bat "npm run ${test_set} ${test_set}_${environment}"
-}
-
-def stop-all-pm() {
-    echo "All node stopping is starting.."
-    bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete all"
 }
