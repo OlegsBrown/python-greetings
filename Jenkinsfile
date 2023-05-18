@@ -68,13 +68,13 @@ pipeline {
         //         }
         //     }
         // }
-        // stage('Delete all') {
-        //     steps {
-        //         script {
-        //             deleteAll()
-        //         }
-        //     }
-        // }
+        stage('Delete all') {
+            steps {
+                script {
+                    deleteAll()
+                }
+            }
+        }
     }
 }
 
@@ -86,11 +86,11 @@ def build() {
     bat "pip3 install -r requirements.txt"
 }
 
-// def deleteAll() {
-//     echo "Deleting all node is starting.."
-//     git branch: 'main', poll: false, url: 'https://github.com/OlegsBrown/python-greetings.git'
+def deleteAll() {
+    echo "Deleting all node is starting.."
+    bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete all" 
 
-// }
+}
 
 def deploy(String environment, int port) {
     echo "Deployment to ${environment} has started.."
