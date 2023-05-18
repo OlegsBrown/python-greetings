@@ -11,59 +11,59 @@ pipeline {
                 }
             }
         }
-        // stage('deploy-to-dev') {
-        //     steps {
-        //         script{
-        //             deploy("DEV", 1010)
-        //         }
-        //     }
-        // }
+        stage('deploy-to-dev') {
+            steps {
+                script{
+                    deploy("dev", 7001)
+                }
+            }
+        }
         // stage('tests-on-dev') {
         //     steps {
         //         script{
-        //             test("BOOKS", "DEV")
+        //             test("BOOKS", "dev")
         //         }
         //     }
         // }
-        // stage('deploy-to-staging') {
-        //     steps {
-        //         script{
-        //             deploy("STG", 2020)
-        //         }
-        //     }
-        // }
+        stage('deploy-to-staging') {
+            steps {
+                script{
+                    deploy("staging", 7002)
+                }
+            }
+        }
         // stage('tests-on-staging') {
         //     steps {
         //         script{
-        //             test("BOOKS", "STG")
+        //             test("BOOKS", "staging")
         //         }
         //     }
         // }
-        // stage('deploy-to-preprod') {
-        //     steps {
-        //         script{
-        //             deploy("PRD", 3030)
-        //         }
-        //     }
-        // }
+        stage('deploy-to-preprod') {
+            steps {
+                script{
+                    deploy("preprod", 7003)
+                }
+            }
+        }
         // stage('tests-on-preprod') {
         //     steps {
         //         script{
-        //             test("BOOKS", "PRD")
+        //             test("BOOKS", "preprod")
         //         }
         //     }
         // }
-        //         stage('deploy-to-prod') {
-        //     steps {
-        //         script{
-        //             test("BOOKS", "PRD")
-        //         }
-        //     }
-        // }
+        stage('deploy-to-prod') {
+            steps {
+                script{
+                    deploy("prod", 7004)
+                }
+            }
+        }
         //         stage('tests-on-prod') {
         //     steps {
         //         script{
-        //             test("BOOKS", "PRD")
+        //             test("BOOKS", "prod")
         //         }
         //     }
         // }
@@ -78,13 +78,14 @@ def build(){
     bat "pip3 install -r requirements.txt"
 }
 
-// def deploy(String environment, int port){
-//     echo "Deployment to ${environment} has started.."
-//     git branch: 'main', url: 'https://github.com/OlegsBrown/python-greetings.git'
-//     bat "npm install"
-//     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete \"books-${environment}\" & EXIT /B 0"
-//     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 start -n \"books-${environment}\" index.js -- ${port}"
-// }
+def deploy(String environment, int port){
+    echo "Deployment to ${environment} has started.."
+    git branch: 'main', url: 'https://github.com/OlegsBrown/python-greetings.git'
+    bat "npm install"
+
+    bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete \"greetings-app-${environment}\" & EXIT /B 0"
+    bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 start app.py --name \"greetings-app-${environment}\" --port ${port}"
+}
 
 // def test(String test_set, String environment){
 //     echo "Testing ${test_set} test set on ${environment} has started.."
