@@ -15,7 +15,7 @@ runs:
       run : npm install -g
       shell: cmd
     - name: Delete service
-      run : pm2 delete "greetings-app-${{ inputs.environment }}"
+      run : pm2 delete "greetings-app-${{ inputs.environment }} & EXIT /B 0"
       shell: cmd
     - name: Start service
       run : pm2 start app.py --name "greetings-app-${{ inputs.environment }}" -- --port=${{ inputs.port }}
