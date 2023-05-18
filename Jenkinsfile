@@ -105,7 +105,5 @@ def test(String test_set, String environment){
 
 def stop-all-pm() {
     echo "All node stopping is starting.."
-    git branch: 'main', poll: false, url: 'https://github.com/OlegsBrown/python-greetings.git'
-    bat "npm install pm2 -g"
     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete all"
 }
