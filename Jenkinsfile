@@ -81,11 +81,12 @@ def build(){
 def deploy(String environment, int port) {
     echo "Deployment to ${environment} has started.."
     git branch: 'main', url: 'https://github.com/OlegsBrown/python-greetings.git'
-    bat "npm install"
+    bat 'npm install'
 
-    bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete greetings-app-${environment} || EXIT /B 0"
+    bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete greetings-app-${environment}" || bat 'EXIT /B 0'
     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 start app.py --name greetings-app-${environment} --port ${port}"
 }
+
 
 // def test(String test_set, String environment){
 //     echo "Testing ${test_set} test set on ${environment} has started.."
