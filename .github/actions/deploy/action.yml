@@ -43,4 +43,4 @@ runs:
 
     - name: Start service
       shell: cmd
-      run: pm2 start app.js --name "greetings-app-${{ inputs.environment }}" -- --port=${{ inputs.port }}
+      run: pm2 start app.py --name "greetings-app-${{ inputs.environment }}" -- --port=${{ inputs.port }}
