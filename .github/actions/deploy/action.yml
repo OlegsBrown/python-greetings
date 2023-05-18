@@ -4,7 +4,7 @@ inputs:
     default: 1010
   environment:
     description: 'Environment for sample node application'
-    default: 'DEV'
+    default: 'dev'
 runs:
   using: "composite"
   steps: 
@@ -12,11 +12,11 @@ runs:
       run: echo Deployment to ${{ inputs.environment }} has started..
       shell: cmd
     - name: Install dependencies
-      run : npm install
+      run : npm install -g
       shell: cmd
     - name: Delete service
-      run : pm2 delete "books-${{ inputs.environment }}"
+      run : pm2 delete "greetings-${{ inputs.environment }}"
       shell: cmd
     - name: Start service
-      run : pm2 start -n "books-${{ inputs.environment }}" index.js -- ${{ inputs.port }}
+      run : pm2 start app.py --name "greetings-app-${{ inputs.environment }}" -- --port=${{ inputs.port }}
       shell: cmd
