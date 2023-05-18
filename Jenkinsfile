@@ -84,6 +84,6 @@ def deploy(String environment, int port) {
     git branch: 'main', poll: false, url: 'https://github.com/OlegsBrown/python-greetings.git'
     bat 'npm install -g'
     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete \"books-${environment}\" & EXIT /B 0"
-    bat "pm2 start app.py --name greetings-app-${environment} --port ${port}"
+    //bat "pm2 start app.py --name greetings-app-${environment} --port ${port}"
     
 }
