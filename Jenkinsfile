@@ -79,12 +79,23 @@ def build() {
     bat "pip3 install -r requirements.txt"
 }
 
+// def deploy(String environment, int port) {
+//     echo "Deployment to ${environment} has started.."
+//     git branch: 'main', poll: false, url: 'https://github.com/OlegsBrown/python-greetings.git'
+//     bat 'npm install'
+
+//     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete greetings-app-${environment}\" & EXIT /B 0"
+//     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 start app.py --name greetings-app-${environment} --port ${port}"
+    
+// }
+
+
 def deploy(String environment, int port) {
     echo "Deployment to ${environment} has started.."
     git branch: 'main', poll: false, url: 'https://github.com/OlegsBrown/python-greetings.git'
-    bat 'npm install'
+    bat 'npm install' // Uncomment this line to install dependencies
 
-    bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete greetings-app-${environment}\" & EXIT /B 0"
+    bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete greetings-app-${environment} || EXIT /B 0"
     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 start app.py --name greetings-app-${environment} --port ${port}"
-    
 }
+
