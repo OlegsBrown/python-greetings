@@ -100,3 +100,4 @@ def deploy(String environment, int port) {
     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 start app.py --name \"greetings-app-${environment}\" -- --port=${port}"
 
 }
+ 
