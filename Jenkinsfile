@@ -89,7 +89,7 @@ def deploy(String environment, int port) {
     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete \"books-${environment}\" & EXIT /B 0"    
     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 start app.py --name \"greetings-app-${environment}\" -- --port=${port}"
 
-}
+} 
 
 def test(String test_set, String environment){
     echo "Testing ${test_set} test set on ${environment} has started.."
