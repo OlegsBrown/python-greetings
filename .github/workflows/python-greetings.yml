@@ -13,9 +13,10 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v3.5.2
         with:
-          repository: 'OlegsBrown/python-greetings'
-      - uses: ./.github/actions/install-pip-deps
+          repository: 'mtararujs/python-greetings'
+          path: 'api-dep'
 
 
   deploy-to-dev:
@@ -23,8 +24,10 @@ jobs:
     needs: [install-pip-deps]
     steps:
       - uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v3.5.2
         with:
-          repository: 'OlegsBrown/python-greetings'
+          repository: 'mtararujs/python-greetings'
+          path: 'api-dep'
       - uses: ./.github/actions/deploy
         with:
           port: 7001
@@ -37,7 +40,7 @@ jobs:
       - uses: actions/checkout@v3.5.2
       - uses: actions/checkout@v3.5.2
         with:
-          repository: 'OlegsBrown/course-js-api-framework'
+          repository: 'mtararujs/course-js-api-framework'
           path: 'api-tests'
       - uses: ./.github/actions/test
         with:
@@ -48,8 +51,10 @@ jobs:
     needs: [tests-on-dev]
     steps:
       - uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v3.5.2
         with:
-          repository: 'OlegsBrown/python-greetings'
+          repository: 'mtararujs/python-greetings'
+          path: 'api-dep'
       - uses: ./.github/actions/deploy
         with:
           port: 7002
@@ -62,7 +67,7 @@ jobs:
       - uses: actions/checkout@v3.5.2
       - uses: actions/checkout@v3.5.2
         with:
-          repository: 'OlegsBrown/course-js-api-framework'
+          repository: 'mtararujs/course-js-api-framework'
           path: 'api-tests'
       - uses: ./.github/actions/test
         with:
@@ -73,8 +78,10 @@ jobs:
     needs: [tests-on-staging]
     steps:
       - uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v3.5.2
         with:
-          repository: 'OlegsBrown/python-greetings'
+          repository: 'mtararujs/python-greetings'
+          path: 'api-dep'
       - uses: ./.github/actions/deploy
         with:
           port: 7003
@@ -87,7 +94,7 @@ jobs:
       - uses: actions/checkout@v3.5.2
       - uses: actions/checkout@v3.5.2
         with:
-          repository: 'OlegsBrown/course-js-api-framework'
+          repository: 'mtararujs/course-js-api-framework'
           path: 'api-tests'
       - uses: ./.github/actions/test
         with:
@@ -98,8 +105,10 @@ jobs:
     needs: [tests-on-preprod]
     steps:
       - uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v3.5.2
         with:
-          repository: 'OlegsBrown/python-greetings'
+          repository: 'mtararujs/python-greetings'
+          path: 'api-dep'
       - uses: ./.github/actions/deploy
         with:
           port: 7004
@@ -112,7 +121,7 @@ jobs:
       - uses: actions/checkout@v3.5.2
       - uses: actions/checkout@v3.5.2
         with:
-          repository: 'OlegsBrown/course-js-api-framework'
+          repository: 'mtararujs/course-js-api-framework'
           path: 'api-tests'
       - uses: ./.github/actions/test
         with:
