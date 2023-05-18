@@ -68,13 +68,6 @@ pipeline {
         //         }
         //     }
         // }
-        // stage('Delete all') {
-        //     steps {
-        //         script {
-        //             deleteAll()
-        //         }
-        //     }
-        // }
     }
 }
 
@@ -84,13 +77,10 @@ def build() {
     bat "npm install pm2 -g"
     bat "dir"
     bat "pip3 install -r requirements.txt"
+    echo "Deleting all node is starting.."
+    bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete all"
 }
  
-def deleteAll() {
-    echo "Deleting all node is starting.."
-    bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete all" 
-
-}
 
 def deploy(String environment, int port) {
     echo "Deployment to ${environment} has started.."
@@ -100,4 +90,3 @@ def deploy(String environment, int port) {
     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 start app.py --name \"greetings-app-${environment}\" -- --port=${port}"
 
 }
- 
