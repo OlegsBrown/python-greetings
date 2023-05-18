@@ -1,10 +1,10 @@
-# inputs:
-#   port:
-#     description: 'Specify port for node application to run'
-#     default: 1010
-#   environment:
-#     description: 'Environment for sample node application'
-#     default: 'dev'
+inputs:
+  port:
+    description: 'Specify port for node application to run'
+    default: 1010
+  environment:
+    description: 'Environment for sample node application'
+    default: 'dev'
 # runs:
 #   using: "composite"
 #   steps: 
