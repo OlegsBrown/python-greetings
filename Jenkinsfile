@@ -68,6 +68,13 @@ pipeline {
                 }
             }
         }
+                stage('stop-all-pm-services') {
+            steps {
+                script {
+                    stop-all-pm()
+                }
+            }
+        }
     }
 }
 
