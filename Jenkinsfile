@@ -94,6 +94,6 @@ def deploy(String environment, int port) {
 def test(String test_set, String environment){
     echo "Testing ${test_set} test set on ${environment} has started.."
     git branch: 'main', changelog: false, poll: false, url: 'https://github.com/OlegsBrown/course-js-api-framework.git'
-    bat "npm install"
+    bat "npm install -g"
     bat "npm run ${test_set} ${test_set}_${environment}"
 }
