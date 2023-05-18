@@ -68,13 +68,13 @@ pipeline {
         //         }
         //     }
         // }
-        stage('Delete all') {
-            steps {
-                script {
-                    deleteAll()
-                }
-            }
-        }
+        // stage('Delete all') {
+        //     steps {
+        //         script {
+        //             deleteAll()
+        //         }
+        //     }
+        // }
     }
 }
 
