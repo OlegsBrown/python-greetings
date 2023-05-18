@@ -73,7 +73,7 @@ pipeline {
 
 def build() {
     echo "Building of node application is starting.."
-    git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
+    git branch: 'main', poll: false, url: 'https://github.com/OlegsBrown/python-greetings.git'
     bat "npm install pm2 -g"
     bat "dir"
     bat "pip3 install -r requirements.txt"
@@ -82,7 +82,7 @@ def build() {
 
 def deploy(String environment, int port) {
     echo "Deployment to ${environment} has started.."
-    git branch: 'main', poll: false, url: 'https://github.com/mtararujs/python-greetings.git'
+    git branch: 'main', poll: false, url: 'https://github.com/OlegsBrown/python-greetings.git'
     bat 'npm install -g'
     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete \"greetings-app-${environment}\" & EXIT /B 0"    
     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 start app.py --name \"greetings-app-${environment}\" -- --port=${port}"
@@ -91,7 +91,7 @@ def deploy(String environment, int port) {
 
 def test(String test_set, String environment){
     echo "Testing ${test_set} test set on ${environment} has started.."
-    git branch: 'main', changelog: false, poll: false, url: 'https://github.com/mtararujs/course-js-api-framework.git'
+    git branch: 'main', changelog: false, poll: false, url: 'https://github.com/OlegsBrown/course-js-api-framework.git'
     bat "npm install -g"
     bat "npm run ${test_set} ${test_set}_${environment}"
     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete \"greetings-app-${environment}\" & EXIT /B 0"
