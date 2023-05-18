@@ -26,16 +26,21 @@ runs:
   using: "composite"
   steps: 
     - name: Prepare all required actions
+      shell: cmd
       run: ./.github/actions/deploy
 
     - name: Print output
+      shell: cmd
       run: echo "Deployment to ${{ inputs.environment }} has started.."
 
     - name: Install dependencies
+      shell: cmd
       run: npm install
 
     - name: Delete service
+      shell: cmd
       run: pm2 delete greetings-app-${{ inputs.environment }} || true
 
     - name: Start service
+      shell: cmd
       run: pm2 start app.js --name "greetings-app-${{ inputs.environment }}" -- --port=${{ inputs.port }}
