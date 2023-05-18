@@ -85,6 +85,6 @@ def deploy(String environment, int port) {
     bat 'npm install -g'
     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete \"books-${environment}\" & EXIT /B 0"    
     //bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 start app.py --name \"greetings-app-${environment}\" --port ${port}"
-    bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 start app.py --name \"greetings-app-${environment}\" --port ${port}"
+    bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 start app.py --name \"greetings-app-${environment}\" --env port=${port}"
 
 }
