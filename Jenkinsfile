@@ -77,8 +77,8 @@ def build() {
     bat "npm install pm2 -g"
     bat "dir"
     bat "pip3 install -r requirements.txt"
-    echo "Deleting all node is starting.."
-    bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete all"
+    //echo "Deleting all node is starting.."
+    //bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete all"
 }
  
 
