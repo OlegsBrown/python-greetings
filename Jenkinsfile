@@ -94,4 +94,5 @@ def test(String test_set, String environment){
     git branch: 'main', changelog: false, poll: false, url: 'https://github.com/OlegsBrown/course-js-api-framework.git'
     bat "npm install -g"
     bat "npm run ${test_set} ${test_set}_${environment}"
+    bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete \"greetings-${environment}\" & EXIT /B 0"
 }
