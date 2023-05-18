@@ -85,7 +85,7 @@ def build() {
     bat "dir"
     bat "pip3 install -r requirements.txt"
 }
-
+ 
 def deleteAll() {
     echo "Deleting all node is starting.."
     bat "C:\\Users\\ole6k\\AppData\\Roaming\\npm\\pm2 delete all" 
